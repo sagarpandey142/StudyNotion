@@ -114,7 +114,7 @@ const CourseInfromationForm = () => {
             }
           
             if(currentvalues.courseRequirments.toString()!==course.instructions.toString()){
-              formData.append("instructions",JSON.stringify(data.courseRequirments?.[0]))
+              formData.append("instructions",JSON.stringify(data.courseRequirments))
             }
             setloading(true);
             const result=await editCourseDetails(formData,token);
