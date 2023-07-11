@@ -21,6 +21,7 @@ const cors=require("cors");
 const fileUpload=require("express-fileupload");
 const dotenv=require("dotenv");
 dotenv.config();
+
 PORT=process.env.PORT || 4000;
 
 app.use(express.json());
@@ -29,7 +30,7 @@ app.use(cookieParser());
 app.use(
     cors({
        
-            origin: "http://localhost:3000",
+            origin: true,
             credentials:true,
     })
 )

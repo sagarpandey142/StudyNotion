@@ -35,7 +35,7 @@ const LogInForm = () => {
       const toastID=toast.loading("loading.....")
    //   dispatch(setLoading(true));
       try{
-        const data = await axios.post(endpoints. LOGIN_API ,formData);
+        const data = await axios.post(endpoints.LOGIN_API ,formData);
          
         if(!data.data.success){
           throw new Error(data.message);
