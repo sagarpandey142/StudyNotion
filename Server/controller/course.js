@@ -4,7 +4,7 @@ const { imageUploadToCloudinary } = require("../utils/imageUpload");
 require("dotenv").config();
 const Course=require("../model/courses");
 const CourseProgress=require("../model/courseprogress");
-const { convertSecondsToDuration } = require("../utils/secToDuration");
+const { convertSecondsToDuration } = require("../utils/sectoDuration");
 const courses = require("../model/courses");
 const Section = require("../model/Section");
 const subSection = require("../model/subSection");
