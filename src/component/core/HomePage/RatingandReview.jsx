@@ -39,7 +39,7 @@ const RatingandReview = () => {
                   
                      >
                                   {
-                                        ratingData.map((data,index)=>(
+                                        ratingData?.map((data,index)=>(
                                              
                                              <SwiperSlide key={index} className='bg-richblack-800 gap-3 w-fit ' >
                                             
