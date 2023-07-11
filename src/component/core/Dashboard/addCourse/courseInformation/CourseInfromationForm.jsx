@@ -114,7 +114,7 @@ const CourseInfromationForm = () => {
             }
           
             if(currentvalues.courseRequirments.toString()!==course.instructions.toString()){
-              formData.append("instructions",JSON.stringify(data.courseRequirments[0]))
+              formData.append("instructions",JSON.stringify(data.courseRequirments?.[0]))
             }
             setloading(true);
             const result=await editCourseDetails(formData,token);
@@ -142,7 +142,7 @@ const CourseInfromationForm = () => {
         formData.append("price",data.coursePrice)
         formData.append("whatYouWillLearn",data.courseBenefits)
         formData.append("category",data.courseCategory)
-        formData.append("instructions",JSON.stringify(data.courseRequirements[0]))
+        formData.append("instructions",JSON.stringify(data.courseRequirements?.[0]))
         formData.append("tag",JSON.stringify(data.courseTags))
         formData.append("status",COURSE_STATUS.DRAFT)  
         formData.append("thumbnailImage", data.courseImage)
