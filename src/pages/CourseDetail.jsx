@@ -60,7 +60,7 @@ const CourseDetail = () => {
             toast.error("You Are Instructor You Cant Buy A Course")
             return;
         }
-        
+
          if(token){
            buyCourse(token, [courseId], user, navigate, dispatch)
          }
@@ -235,13 +235,7 @@ const CourseDetail = () => {
                     </button>
                     <br></br>
                     <button onClick={handleAddToCart} className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
-                    {
-                        user.accountType!==ACCOUNT_TYPE.INSTRUCTOR && (
-                            <span >
                                 Add To Cart
-                            </span>
-                        ) 
-                    }
                     </button>
                 </div>
 
