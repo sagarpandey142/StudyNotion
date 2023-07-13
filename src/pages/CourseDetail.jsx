@@ -96,8 +96,13 @@ const CourseDetail = () => {
    },[course])
 
     const handleAddToCart=()=>{
+        if(user?.ACCOUNT_TYPE === ACCOUNT_TYPE.INSTRUCTOR){
+            toast.error("You Are Instructor You Cant Buy A Course")
+            return;
+        }
+        else{
          dispatch(addToCart(course));
-
+        }
     }
     const handleShare=()=>{
         copy(window.location.href);
@@ -225,19 +230,13 @@ const CourseDetail = () => {
                     }
                     </button>
                     <br></br>
-                    <button  className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
+                    <button onClick={handleAddToCart} className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
                     {
-                        user.accountType!==ACCOUNT_TYPE.INSTRUCTOR ? (
-                            <span onClick={handleAddToCart}>
+                        user.accountType!==ACCOUNT_TYPE.INSTRUCTOR && (
+                            <span >
                                 Add To Cart
                             </span>
-                        ) : (
-                            <span onClick={()=>{
-                                navigate("/dashboard/my-courses")
-                            }}>
-                                  Go To Course
-                            </span>
-                        )
+                        ) 
                     }
                     </button>
                 </div>
