@@ -56,7 +56,7 @@ const CourseDetail = () => {
     },[courseId])
      
     const handleBuyCourse=async()=>{
-        if(user?.ACCOUNT_TYPE === ACCOUNT_TYPE.INSTRUCTOR){
+        if(user?.accountType === ACCOUNT_TYPE.INSTRUCTOR){
             toast.error("You Are Instructor You Cant Buy A Course")
             return;
         }
@@ -100,7 +100,7 @@ const CourseDetail = () => {
    },[course])
 
     const handleAddToCart=()=>{
-        if(user?.ACCOUNT_TYPE === ACCOUNT_TYPE.INSTRUCTOR){
+        if(user?. accountType === ACCOUNT_TYPE.INSTRUCTOR){
             toast.error("You Are Instructor You Cant Buy A Course")
             return;
         }
