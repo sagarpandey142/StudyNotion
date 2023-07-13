@@ -225,10 +225,10 @@ const CourseDetail = () => {
                     }
                     </button>
                     <br></br>
-                    <button onClick={handleAddToCart} className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
+                    <button  className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
                     {
                         user.accountType!==ACCOUNT_TYPE.INSTRUCTOR ? (
-                            <span>
+                            <span onClick={handleAddToCart}>
                                 Add To Cart
                             </span>
                         ) : (
