@@ -227,9 +227,15 @@ const CourseDetail = () => {
                     <br></br>
                     <button onClick={handleAddToCart} className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
                     {
-                        user.accountType!==ACCOUNT_TYPE.INSTRUCTOR && (
+                        user.accountType!==ACCOUNT_TYPE.INSTRUCTOR ? (
                             <span>
                                 Add To Cart
+                            </span>
+                        ) : (
+                            <span onClick={()=>{
+                                navigate("/dashboard/my-courses")
+                            }}>
+                                  Go To Course
                             </span>
                         )
                     }
