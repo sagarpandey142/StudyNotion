@@ -7,21 +7,21 @@ exports.updateCourseProgress = async (req, res) => {
   
   const { courseId, subsectionId } = req.body
   const userId = req.user.id
-    console.log("data",courseId,subsectionId);
+    
   try {
     // Check if the subsection is valid
     const subsection = await subSection.findById(subsectionId)
     if (!subsection) {
       return res.status(404).json({ error: "Invalid subsection" })
     }
-    console.log("1")
+   
 
     // Find the course progress document for the user and course
     let courseProgress = await CourseProgress.findOne({
       courseID: courseId,
       userId: userId,
     })
- console.log("course prohress",courseProgress);
+ 
     if (!courseProgress) {
       // If course progress doesn't exist, create a new one
       return res.status(404).json({

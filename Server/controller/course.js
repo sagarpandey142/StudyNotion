@@ -35,8 +35,8 @@ exports.createCourse=async(req,res)=>{
      const instructorDetails = await User.findById(userId, {
         accountType: "Instructor",
     });
-     console.log("Instructor Details: " , instructorDetails);
-     //TODO: Verify that userId and instructorDetails._id  are same or different ?
+   
+  
  
      if(!instructorDetails){
          res.status(401).json({
@@ -212,16 +212,14 @@ exports.getFullCourseDetails = async (req, res) => {
         },
       })
       .exec()
-      console.log("first")
+     
     
     let courseProgressCount = await CourseProgress.findOne({
       courseID: courseId,
       userId: userId,
     })
    
-    console.log("firstss")
-    console.log("courseProgressCount : ", courseProgressCount)
-
+  
     if (!courseDetails) {
       return res.status(400).json({
         success: false,
@@ -270,7 +268,7 @@ exports.editCourse = async (req, res) => {
     try {
       const { courseId } = req.body
       const updates = req.body
-      console.log("req body",updates)
+     
       const course = await Course.findById(courseId)
   
       if (!course) {
@@ -279,7 +277,7 @@ exports.editCourse = async (req, res) => {
   
       // If Thumbnail Image is found, update it
       if (req.files) {
-        console.log("thumbnail update")
+       
         const thumbnail = req.files.thumbnail
         const thumbnailImage = await uploadImageToCloudinary(
           thumbnail,
@@ -339,7 +337,7 @@ exports.editCourse = async (req, res) => {
 exports.deleteCourse=async(req,res)=>{
     try{
       const{courseId}=req.body;
-   console.log("courseid",courseId)
+ 
       const course=await courses.findById(courseId);
       if(!course){
         return res.json("Course Doesnt Found")
@@ -400,7 +398,7 @@ exports.getInstructorCourses = async (req, res) => {
       }).exec()
       
       // Return the instructor's courses
-      console.log("instrcourses",instructorCourses)
+     
      return res.status(200).json({
         success: true,
         data: instructorCourses,

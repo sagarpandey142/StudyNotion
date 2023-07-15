@@ -6,11 +6,11 @@ exports.Auth=async(req,res,next)=>{
   
     try{
         //extract
-        console.log("BEFORE ToKEN EXTRACTION");
+       
         const token=req.cookies.token 
                      || req.body.token 
                      || req.header("Authorisation").replace("Bearer ", "");
-                     console.log("AFTER ToKEN EXTRACTION");
+                 
         if(!token){
             res.status(401).json({
                 sucess:false,
