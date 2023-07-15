@@ -206,7 +206,7 @@ export async function MarkLectureCompletion(data,token){
                   res
                 )
             
-                if (!res.data.message) {
+                if (!res.data.success) {
                   throw new Error(res.data.error)
                 }
 

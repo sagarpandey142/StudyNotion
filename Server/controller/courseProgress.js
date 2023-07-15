@@ -14,13 +14,14 @@ exports.updateCourseProgress = async (req, res) => {
     if (!subsection) {
       return res.status(404).json({ error: "Invalid subsection" })
     }
+    console.log("1")
 
     // Find the course progress document for the user and course
     let courseProgress = await CourseProgress.findOne({
       courseID: courseId,
       userId: userId,
     })
-
+ console.log("course prohress",courseProgress);
     if (!courseProgress) {
       // If course progress doesn't exist, create a new one
       return res.status(404).json({
@@ -40,7 +41,7 @@ exports.updateCourseProgress = async (req, res) => {
     // Save the updated course progress
     await courseProgress.save()
 
-    return res.status(200).json({ message: "Course progress updated" })
+    return res.status(200).json({success:true, message: "Course progress updated" })
   } catch (error) {
     console.error(error)
     return res.status(500).json({ error: "Internal server error" })
