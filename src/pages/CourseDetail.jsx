@@ -89,13 +89,16 @@ const CourseDetail = () => {
     
    //total video length
    const[totalSec,setTotalSec]=useState(0);
+
    useEffect(()=>{
+
         let totalSecOfVideo=0;
         course?.courseContent?.section?.forEach((sec)=>{
              sec?.subSection?.forEach((subsec)=>{
                  totalSecOfVideo+=subsec?.timeDuration
              })
         })
+        console.log("total section of video",totalSecOfVideo)
         setTotalSec(Math.round(totalSecOfVideo))
    },[course])
 
