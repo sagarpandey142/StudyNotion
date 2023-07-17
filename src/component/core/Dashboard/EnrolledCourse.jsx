@@ -21,7 +21,7 @@ const EnrolledCourse = () => {
    useEffect(()=>{
        getEnrolledcourse();
    },[])
-   console.log("first",enrolledcourse)
+  
   return (
     <div className='text-white'>
          <div className="text-3xl text-richblack-50">Enrolled Courses</div>
