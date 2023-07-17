@@ -49,6 +49,7 @@ const VerifyEmail = () => {
     console.log("final data",finaldata);
     
             dispatch(setLoading(true));
+            toast.loading("Loading...")
             try{
                 const response=await axios.post(endpoints.SIGNUP_API,
                     finaldata
