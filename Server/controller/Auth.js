@@ -81,6 +81,7 @@ exports.signUp=async (req,res)=>{
       
           
           // Check if password and confirm password match
+          console.log("req",req.body)
 		if (password !== confirmPassword) {
 			return res.status(400).json({
 				success: false,
@@ -103,7 +104,7 @@ exports.signUp=async (req,res)=>{
         //find most recent otp in dB
         const recentOtp= await OTP.find({email}).sort({createdAt:-1}).limit(1);
         console.log("printing recent opt",recentOtp);
-       
+        
         if(recentOtp.length===0){
          return   res.status(400).json({
                 success:false,
