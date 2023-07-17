@@ -9,6 +9,7 @@ const EnrolledCourse = () => {
     const {token}=useSelector((state)=>state.auth)
     const[enrolledcourse,setEnrolledCoure]=useState();
     const navigate=useNavigate();
+
     const getEnrolledcourse=async()=>{
          try{
           const response=await getAllEnrolledCourses(token);
@@ -27,8 +28,8 @@ const EnrolledCourse = () => {
          <div className="text-3xl text-richblack-50">Enrolled Courses</div>
          {
           !enrolledcourse ? (
-            <div>
-              Spinner...
+            <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+              <div className='spinner'>Spinner...</div>
             </div>
           ) :  !enrolledcourse.length ? (<p>You have not enrolled in any course yet</p>)
             : (
