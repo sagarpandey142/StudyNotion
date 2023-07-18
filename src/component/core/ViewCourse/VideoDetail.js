@@ -35,7 +35,7 @@ const VideoDetail = () => {
             console.log("filter data",filterData);
             const videoFilterData=filterData?.[0]?.subSection.filter((subsection)=>subsection._id===subSectionId);
              console.log("video fiter",videoFilterData)
-            setVideoData(videoFilterData[0]);
+            setVideoData(videoFilterData?.[0]);
          
           }
     }

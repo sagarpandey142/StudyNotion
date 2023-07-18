@@ -22,6 +22,8 @@ const EnrolledCourse = () => {
    useEffect(()=>{
        getEnrolledcourse();
    },[])
+
+   console.log("enrolled course",enrolledcourse);
   
   return (
     <div className='text-white'>
@@ -51,7 +53,7 @@ const EnrolledCourse = () => {
                             <div
                                 className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
                                 onClick={()=>
-                               navigate(`/view-course/${course?._id}/section/${course?.courseContent[0]._id}/sub-section/${course?.courseContent[0]?.subSection[0]._id}`)}>
+                               navigate(`/view-course/${course?._id}/section/${course?.courseContent[0]?._id}/sub-section/${course?.courseContent[0]?.subSection[0]?._id}`)}>
                                 <img src={course.thumbnail}
                                    className="h-14 w-14 rounded-lg object-cover"
                                 />
