@@ -28,10 +28,11 @@ const EnrolledCourse = () => {
          <div className="text-3xl text-richblack-50">Enrolled Courses</div>
          {
           !enrolledcourse ? (
-            <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-              <div className='spinner'>Spinner...</div>
+            <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center translate-x-2 ">
+              <div className='spinner'>
+                   <p></p></div>
             </div>
-          ) :  !enrolledcourse.length ? (<p>You have not enrolled in any course yet</p>)
+          ) :  !enrolledcourse.length ? (<p className='text-richblack-300'>You have not enrolled in any course yet</p>)
             : (
               <div className="my-8 text-richblack-5">
                  <div className="flex rounded-t-lg bg-richblack-500 ">

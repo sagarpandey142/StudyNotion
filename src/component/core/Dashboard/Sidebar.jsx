@@ -54,9 +54,9 @@ const Sidebar = () => {
             
                } )}
                className='text-sm font-medium text-richblack-300 ml-3'>
-               <div className='flex items-center gap-x-2 text-richblack-100'>
-               <VscSignOut className="text-lg "/>
-                   <span className=' text-lg'> Logout</span>
+               <div className='flex items-center gap-x-2 text-richblack-300 text-lg translate-x-7'>
+               <VscSignOut className=" "/>
+                   <span className=' '> Logout</span>
                </div>
                  
                 </button>
