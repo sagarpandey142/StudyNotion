@@ -14,7 +14,7 @@ const courseSlice = createSlice({
     setStep: (state, action) => {
    
       state.step = action.payload
-      console.log("state",action)
+      
     },
     setCourse: (state, action) => {
       

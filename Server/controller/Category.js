@@ -86,7 +86,7 @@ exports.categoryPageDetail=async(req,res)=>{
           }
 
            //get courses for unspecified categoryId
-         console.log("hiiiii")
+            console.log("hiiiii")
            const randomCategory=await Category.find({
                                         _id:{$ne:categoryid},
            })

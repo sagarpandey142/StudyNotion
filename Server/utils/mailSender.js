@@ -1,7 +1,7 @@
 const nodemailer=require("nodemailer");
 
 const nodemamailSender=async (email,title,body)=>{
-
+  console.log("nodemailer",email,title,body);
     try{
          
       let transporter=nodemailer.createTransport({

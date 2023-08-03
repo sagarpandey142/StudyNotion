@@ -93,15 +93,15 @@ const CourseDetail = () => {
    useEffect(()=>{
 
         let totalSecOfVideo=0;
-        course?.courseContent?.section?.forEach((sec)=>{
+        course?.courseContent?.forEach((sec)=>{
              sec?.subSection?.forEach((subsec)=>{
                  totalSecOfVideo+=subsec?.timeDuration
              })
         })
-        console.log("total section of video",totalSecOfVideo)
+      
         setTotalSec(Math.round(totalSecOfVideo))
    },[course])
-
+   
     const handleAddToCart=()=>{
         if(user?. accountType === ACCOUNT_TYPE.INSTRUCTOR){
             toast.error("You Are Instructor You Cant Buy A Course")
@@ -171,7 +171,7 @@ const CourseDetail = () => {
                         <div className='flex gap-2'>
                             <p>{course?.courseContent?.length} sections{`(s)`}</p>
                             <p>{TotalLecture} {`lecture(s)`}</p>
-                            <p>{totalSec} { `total length`}</p>
+                            <p>{`${totalSec}s total Length`}</p>
                         </div>
                     </div>
                     {/*lecture */}

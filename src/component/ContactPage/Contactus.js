@@ -40,7 +40,7 @@ const Contactus = () => {
                 email:"",
                 firstname:"",
                 lastname:"",
-                message:"",
+                Message:"",
             
             })
         }

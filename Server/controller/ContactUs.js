@@ -1,15 +1,16 @@
 const { contactUsEmail } = require("../mail/templates/contactUsEmail")
-const mailSender = require("../utils/mailSender")
+const nodemamailSender = require("../utils/mailSender")
 
 exports.contactUsController = async (req, res) => {
   console.log("hiii")
-  const { email, firstname, lastname, message } = req.body
-  console.log("req",req.body)
+  console.log("reqbidy",req.body);
+  const { email, firstname, lastname, Message } = req.body.data
+  console.log("req",email)
   try {
-    const emailRes = await mailSender(
+    const emailRes = await nodemamailSender(
       email,
       "Your Data send successfully",
-      contactUsEmail(email, firstname, lastname, message)
+      contactUsEmail(email, firstname, lastname, Message)
     )
     console.log("Email Res ", emailRes)
     return res.json({

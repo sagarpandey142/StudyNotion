@@ -8,6 +8,7 @@ import {  useNavigate } from 'react-router-dom';
 const EnrolledCourse = () => {
     const {token}=useSelector((state)=>state.auth)
     const[enrolledcourse,setEnrolledCoure]=useState();
+    const[totalSec,setTotalSec]=useState(0);
     const navigate=useNavigate();
 
     const getEnrolledcourse=async()=>{
@@ -22,7 +23,10 @@ const EnrolledCourse = () => {
    useEffect(()=>{
        getEnrolledcourse();
    },[])
+ 
 
+
+  let totalSecOfVideo;
    console.log("enrolled course",enrolledcourse);
   
   return (
@@ -64,7 +68,7 @@ const EnrolledCourse = () => {
                             </div>
 
                             <div className="w-1/4 px-2 py-3">
-                              {course?.totalDuration}
+                                    
                             </div>
 
                             <div className="flex w-1/5 flex-col gap-2 px-2 py-3">
