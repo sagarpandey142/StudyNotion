@@ -3,7 +3,7 @@ import { Category } from "../api"
 import { apiConnector } from "../apiconnector"
 
 export const getCatalogPageData=async(categoryid)=>{
-    console.log("id",categoryid)
+  
     const toastId=toast.loading("Loading....")
     let result=[]
             try{

@@ -11,15 +11,15 @@ const nodemamailSender=async (email,title,body)=>{
             pass:process.env.MAIL_PASS,
         }
       })
-
+   
       let info=await transporter.sendMail({
         from:'StudyNotion ',
         to:`${email}`,
         subject:`${title}`,
         html:`${body}`,
       })
-
-      console.log(info);
+      console.log("kwedewd")
+      console.log("info",info);
       return info;
       
     } catch(err){

@@ -18,12 +18,15 @@ const otpSchema=new mongoose.Schema({
 })
 
 async function sendverificationEamil(email,otp){
+   console.log("tyr",email,otp);
      try{
           const mailresponse=await nodemamailSender(
             email,"Verfication Email From StudyNotion",
             emailTemplate(otp)
             );
+         console.log("mail response",mailresponse);
           console.log("Email sent Successfully: ",mailresponse.response);
+          return;
      } catch(err){
         console.log("error occured while sending mails: ", err);
         throw err;
@@ -37,7 +40,7 @@ otpSchema.pre("save", async function (next) {
 	// Only send an email when a new document is created
 	if (this.isNew) {
 		await sendverificationEamil(this.email, this.otp);
-	}
+   }
 	next();
 });
 

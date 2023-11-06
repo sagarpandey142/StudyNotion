@@ -39,34 +39,18 @@ function SignupForm  ()  {
     }
     async function otp() 
     {
-
-     //const toastID=toast.loading("loading.....")
+      const toastId=toast.loading("Loading...");
+    
       dispatch(setLoading(true));
        try{  
-        console.log("otp email" , formdata.email);
        
-        //  const data = await fetch(endpoints.SENDOTP_API , {
-        //   method: "POST", // *GET, POST, PUT, DELETE, etc.
-        //   mode: "cors", // no-cors, *cors, same-origin
-        //  // *default, no-cache, reload, force-cache, only-if-cached
-        // // include, *same-origin, omit
-        // credentials: "same-origin", 
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     // 'Content-Type': 'application/x-www-form-urlencoded',
-        //   },
-        //   body:JSON.stringify(formdata),
-        //  })
-        //  const d = await data.json()
-
-
+   
         const signupData={
              ...formdata,
              accountType,
            }
 
       dispatch(setSignupData(signupData))
-      
         console.log("form",formdata);
         const data = await axios.post(endpoints.SENDOTP_API ,formdata);
              console.log("data sis",data);
@@ -76,16 +60,15 @@ function SignupForm  ()  {
           }
           
           toast.success("Otp Sent SuccessFull");
-          console.log("data from  Email",data);
           navigate("/verify-email");
-
+        
        } catch(error)
        {
 
         toast.error("Otp Not Sent")
          console.log(error.message);
        }
-      // toast.dismiss(toastID);
+       toast.dismiss(toastId);
        dispatch(setLoading(false));
 
     }

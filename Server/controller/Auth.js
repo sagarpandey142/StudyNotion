@@ -17,6 +17,7 @@ exports.otpGenerate= async(req,res)=>{
            //check in db
         const checkUserPresent= await User.findOne({email});
           //if present send response
+        
         if(checkUserPresent){
             return res.status(401).json({
                 success:false,
@@ -29,6 +30,7 @@ exports.otpGenerate= async(req,res)=>{
         lowerCaseAlphabets: false,
         specialChars: false,
     });
+  
     const result = await OTP.findOne({ otp: otp });
     console.log("Result is Generate OTP Func");
     console.log("OTP", otp);
@@ -38,19 +40,23 @@ exports.otpGenerate= async(req,res)=>{
             upperCaseAlphabets: false,
         });
     }
-
+    
         const otpPayload={email,otp};
               //store in db
+              console.log("come",otpPayload)
         const otpbody= await OTP.create(otpPayload);
-        console.log(otpbody);
-
-          res.status(200).json({
+        
+        console.log("otp body",otpbody);
+        console.log(">")
+        console.log("done>>>>>>>>>")
+        return  res.status(200).json({
          success:true,
          message:"otp created successfully",
        })
 
      } catch(err){
-        res.status(401).json({
+       return res.status(401).json({
+           
             success:false,
             message:"error while generating otp",
         })
@@ -112,7 +118,7 @@ exports.signUp=async (req,res)=>{
             })           
         }
        
-       else if(otp!==recentOtp[0].otp){
+        if(otp!==recentOtp[0].otp){
            return res.status(400).json({
                 success:false,
                 message:"OTP Is Invalid",
@@ -161,6 +167,7 @@ exports.signUp=async (req,res)=>{
 exports.login=async(req,res)=>{
     try{
         //email and password fetch
+        console.log("req body",req.body);
         const {email,password}=req.body;
        
         //validation

@@ -65,7 +65,7 @@ const LogInForm = () => {
     const submithandler=(event)=>{
       event.preventDefault();
       log();
-     // dispatch(login(email,password,navigate))
+      dispatch(login(email,password,navigate))
     }
   return (
     <form className='flex flex-col w-full gap-y-4 mt-6' onSubmit={submithandler} >

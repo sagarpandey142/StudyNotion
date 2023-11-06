@@ -30,7 +30,7 @@ const Navbar = () => {
      const location=useLocation();
 
     const [subLinks,setsubLink]=useState([]);
-
+   
      const fetchSubLink=async()=>{
        try{
         const result= await apiConnector("GET",categories.CATEGORIES_API);
@@ -41,7 +41,7 @@ const Navbar = () => {
            console.log("could not fetch catalog list",error.message);
          }
      }
-
+  
      useEffect(() => {
            fetchSubLink();
      }, [])
@@ -49,12 +49,13 @@ const Navbar = () => {
      console.log("sublink",subLinks);
 
     const matchRoutes=(route)=>{
+       
            return route===location.pathname;
     }
 
   return (
     <div className='flex flex-row h-14 items-center justify-center border-b-[1px] border-b-richblack-700 bg-richblack-800'>
-         
+      
          <div className='w-11/12 max-w-maxContent items-center justify-between flex'>
 
              {/*image*/}

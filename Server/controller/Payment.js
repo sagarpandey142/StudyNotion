@@ -64,9 +64,10 @@ exports.capturePayment=async(req,res)=>{
             
             try{
               //Intiate the Payment with Razorpay
-              const paymentResponse=await instance.orders.create(options);
              
-
+              const paymentResponse=await instance.orders.create(options);
+              
+              
               //response
              return res.status(200).json({
                 success:true,
@@ -106,7 +107,7 @@ exports.verifySignature=async(req,res)=>{
 
     if(expectedSigntaure===razorpay_signature){
         //enroll the student
-         
+      
        await enrollStudent(courses,userId,res)
 
         //return res
@@ -142,7 +143,7 @@ const enrollStudent=async(courses,userId,res)=>{
                 if(!EnrolledCourse){
                   return  res.status(400).json({success:false,message:"SomeThing Went Wrong"})
                 }
-               console.log("hii")
+               
                 const courseprogressUpdated=await CourseProgress.create(
                     {
                         userId:userId,

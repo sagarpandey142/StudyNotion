@@ -271,6 +271,7 @@ const CourseDetail = () => {
      </div>
       
     </div>
+    
      {
         confirmationModal && (
             <ConfirmationModal Modaldata={confirmationModal}/>

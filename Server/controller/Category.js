@@ -39,9 +39,8 @@ exports.createCategory=async(req,res)=>{
 exports.showAllCategory=async(req,res)=>{
      try{
           
-       const AllCategory=await Category.find({},{name:true,decsription:true});
-
-       res.status(200).json({
+      const AllCategory=await Category.find({},{name:true,description:true});
+      return  res.status(200).json({
           success:true,
           data:AllCategory,
           message:"Tag Fetched SuccessFully",
@@ -59,16 +58,16 @@ exports.categoryPageDetail=async(req,res)=>{
     try{
          //fetch category id from request
          const{categoryid}=req.body;
-       
-          //get courses for specified categoryId
+        
           const specifiedCategory=await Category.findById(categoryid)
+         
           .populate({
             path: "course",
             match: { status: "Published" },
             populate: "ratingAndReview",
           })
           .exec()
-           
+          console.log("first",specifiedCategory);
           if(!specifiedCategory){
             return res.status(404).json({
                 success:false,
@@ -86,11 +85,11 @@ exports.categoryPageDetail=async(req,res)=>{
           }
 
            //get courses for unspecified categoryId
-            console.log("hiiiii")
+           
            const randomCategory=await Category.find({
                                         _id:{$ne:categoryid},
            })
-          console.log("hii")
+         
            let differentCategory = await Category.findOne(
             randomCategory[getRandomInt(randomCategory.length)]
               ._id
@@ -101,7 +100,7 @@ exports.categoryPageDetail=async(req,res)=>{
            })
            .exec();
    
-           //HW TODO GET 10 HIGH SELLING COURSE
+           
            const allCategories = await Category.find()
            .populate({
              path: "course",
@@ -111,13 +110,13 @@ exports.categoryPageDetail=async(req,res)=>{
            },
            })
            .exec()
-           console.log("first")
+           
          const allCourses = allCategories.flatMap((category) => category.course)
          const mostSellingCourses = allCourses
            .sort((a, b) => b.sold - a.sold)
            .slice(0, 10)
           
-           console.log("data",specifiedCategory,differentCategory,mostSellingCourses)
+        
            return res.status(200).json({
               success:true,
               data:{

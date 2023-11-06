@@ -1,4 +1,5 @@
-const BASE_URL=process.env.REACT_APP_BASE_URL
+const BASE_URL=process.env.REACT_APP_BASE_URL 
+
 
 export const categories={
 
@@ -13,6 +14,7 @@ export const endpoints={
      RESETPASSWORD_API:BASE_URL+"/auth/reset-password"
  
 }
+
 
 export const settings={
     CHANGE_PASSWORD_API:BASE_URL+"/auth/changepassword",
