@@ -113,7 +113,7 @@ exports.getAllEnrolledCourses=async(req,res)=>{
            }
         })
         .exec();
-      console.log("user detail",userDetail);
+    
         userDetail = userDetail.toObject()
         var SubsectionLength = 0
         for (var i = 0; i < userDetail.courses.length; i++) {
@@ -152,7 +152,7 @@ exports.getAllEnrolledCourses=async(req,res)=>{
             message:`Could Not Find User With This ${userid}`,
           })
         }
-
+      console.log("hii",userDetail);
         return res.status(200).json({
           success:true,
           data:userDetail.courses,

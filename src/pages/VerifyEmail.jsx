@@ -11,7 +11,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const VerifyEmail = () => {
- const dispatch=useDispatch();
+
+  const dispatch=useDispatch();
   const[otp,setotp]=useState(" ");
   const{signupData,loading}=useSelector((state)=>state.auth);
   const navigate=useNavigate();
@@ -20,8 +21,7 @@ const VerifyEmail = () => {
       dispatch(setLoading(true));
       try{
         const response=await axios.post(endpoints.SENDOTP_API,{email});
-        console.log("reponse on send otp ",response);
-
+       
         toast.success("Email Sent");
 
       } catch(error){
@@ -46,7 +46,7 @@ const VerifyEmail = () => {
         otp,
     }
 
-    console.log("final data",finaldata);
+   
     
             dispatch(setLoading(true));
            
@@ -55,12 +55,12 @@ const VerifyEmail = () => {
                     finaldata
                 )
 
-                console.log("printing response in signup",response);
+                
                 toast.success("Sign Up SuccessFull");
                 navigate("/login");
               
             } catch(error){
-                console.log("Error in Signup", error.message);
+                 console.log("Error in Signup", error.message);
                  toast.error("Unable to Signup");
             }
             dispatch(setLoading(false));
@@ -79,7 +79,7 @@ const VerifyEmail = () => {
       
          
 
-        console.log("signup data",signupData);
+     
         signuphandler(signupData);
      }
 
@@ -132,7 +132,7 @@ const VerifyEmail = () => {
                   <p  className="text-richblack-5 flex items-center gap-x-2"> <BiArrowBack />   Back to login</p>
                </Link>
 
-               <button onClick={handleotp}>
+               <button onClick={handleotp} className='flex'>
                <RxCountdownTimer />
                    Resend it
                </button>

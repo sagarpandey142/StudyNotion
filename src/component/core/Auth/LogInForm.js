@@ -41,7 +41,6 @@ const LogInForm = () => {
           throw new Error(data.message);
         }
         toast.success("Log In  SuccessFull");
-        console.log("data from  Email",data);
         dispatch(setToken(data.data.token))
          const userImage = data.data?.user?.images
           ? data.data.user.images

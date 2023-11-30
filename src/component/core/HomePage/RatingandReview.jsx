@@ -14,12 +14,11 @@ const RatingandReview = () => {
 
         const fetchRatingandReview=async()=>{
                const res=await FetchAllRatingandReviews();
-               console.log("res is",res);
                setRatingData(res);
         }
         fetchRatingandReview();
     },[])
-   console.log("rating data",ratingData)
+ 
   return (
  
            <div className='text-white' >

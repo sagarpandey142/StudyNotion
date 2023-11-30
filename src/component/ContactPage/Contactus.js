@@ -17,12 +17,13 @@ const Contactus = () => {
 
 
    const submitContactForm=async(data)=>{
-    console.log("data",data)
+      const toastId=toast.loading("Sending The Message To The Team")
          try{
             setloading(true);
             const res=await apiConnector("POST",contactusEndpoint.CONTACT_US_API,{data})
             console.log("res",res);
             if(res){
+                toast.dismiss(toastId);
                 toast.success("Message Sent SuccessFully Our Team Will Contact You Shortly")
             }
             setloading(false);
@@ -30,6 +31,8 @@ const Contactus = () => {
             console.log("ERROR MESSAGE - ", err.message)
             setloading(false)
          }
+         toast.dismiss(toastId);
+
    }
 
 
@@ -116,7 +119,7 @@ const Contactus = () => {
             {/*message*/}
             <div className="flex flex-col gap-2">
                 <label htmlFor='Message' className="lable-style lg:ml-[-33%]">Message</label>
-                <textArea
+                <textarea
                     className="form-style lg:ml-[-35%] w-[170%]"
                     name='Message'
                     id='Message'

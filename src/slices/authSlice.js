@@ -17,9 +17,7 @@ const authSlice=createSlice({
             state.loading=value.payload;
         },
         setSignupData(state,value){
-            console.log("payload",value.payload)
             state.signupData=value.payload;
-            console.log("signupData",state.signupData)
         },
     },
 })

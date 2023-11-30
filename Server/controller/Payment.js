@@ -32,7 +32,7 @@ exports.capturePayment=async(req,res)=>{
                      if(!course){
                          return res.status(200).json({success:false,message:"Could Not Found The Courses"})
                      }
-                     console.log("courses",course);
+                    
                      const uid=new mongoose.Types.ObjectId(userid);
                      if(course.studentEnrolled.includes(uid))
                      {
@@ -54,7 +54,7 @@ exports.capturePayment=async(req,res)=>{
           }
              //options create
              
-            console.log("totalamount",totalAmount);
+       
             const options={
                 amount:totalAmount*100,
                 currency:"INR",
@@ -92,10 +92,9 @@ exports.verifySignature=async(req,res)=>{
    const courses=req.body?.courses;
    const userId=req.user.id;
 
-   //validation
-   if(!razorPay_payment_id ||
-    !razorpay_order_id || 
-    !razorpay_signature || !courses || !userId){
+   //validatit_id ||
+  
+   if(  !razorpay_order_id ||  !razorpay_signature || !razorPay_payment_id || !courses || !userId){
         return res.status(400).json({success:false,message:"All Field Are Required"})
     }
 
@@ -126,6 +125,7 @@ exports.verifySignature=async(req,res)=>{
 }
 
 const enrollStudent=async(courses,userId,res)=>{
+    
            //course ma traverse
            if(!courses || !userId){
             return res.status(400).json({success:false,message:"Please Provide Data For Courses"})

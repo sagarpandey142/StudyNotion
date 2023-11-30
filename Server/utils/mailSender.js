@@ -18,8 +18,7 @@ const nodemamailSender=async (email,title,body)=>{
         subject:`${title}`,
         html:`${body}`,
       })
-      console.log("kwedewd")
-      console.log("info",info);
+     
       return info;
       
     } catch(err){

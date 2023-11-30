@@ -53,7 +53,6 @@ export async function FetchAllRatingandReviews(){
         try{
             const response=await apiConnector("GET",ratingAndReview.FETCH_ALL_RATING_AND_REVIEW);
 
-             console.log("rating are",response)
             if(!response.data.success){
                 throw new Error(response.data.message)
             }

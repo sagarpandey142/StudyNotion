@@ -51,9 +51,9 @@ function SignupForm  ()  {
            }
 
       dispatch(setSignupData(signupData))
-        console.log("form",formdata);
+       
         const data = await axios.post(endpoints.SENDOTP_API ,formdata);
-             console.log("data sis",data);
+        
 
           if(!data.data.success){
             throw new Error(data.message);
@@ -78,31 +78,6 @@ function SignupForm  ()  {
     const submitHandler=(event)=>{
            event.preventDefault();
            otp();
-          //  if(password!==confirmPassword){
-          //     toast.error("Password Do Not Match");
-          //     return;
-          //  }
-
-          //  const signupData={
-          //    ...formdata,
-          //    accountType,
-          //  }
-          //   console.log("for data",formdata);
-
-          //  dispatch(setSignupData(signupData))
-        
-          //  dispatch(sendOtp(formdata.email,navigate))
-
-         
-          //  setFormData({
-          //   firstName:"",
-          //   lastName: "",
-          //   email: "",
-          //   password: "",
-          //   confirmPassword: "",
-
-          //  })
-          // setAccountType(ACCOUNT_TYPE.STUDENT)
     }
 
     const tabData=[
@@ -145,6 +120,7 @@ function SignupForm  ()  {
             className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px] -mt-4 '
          />
              </label>
+            
              <label className='w-full '> 
              <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>
                 Last Name
@@ -168,8 +144,8 @@ function SignupForm  ()  {
 
              <div className='mt-[20px]'>
              <label className='w-full '> 
-        <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>
-        Email
+          <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>
+          Email
           <sup className='text-[#EF476F]'> *</sup>
          </p>
          <br/>
@@ -186,7 +162,7 @@ function SignupForm  ()  {
              </label>
              </div>
 
-             {/*phone number*/}
+        
 
              {/*password and change password */}
              

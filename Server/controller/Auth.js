@@ -43,12 +43,10 @@ exports.otpGenerate= async(req,res)=>{
     
         const otpPayload={email,otp};
               //store in db
-              console.log("come",otpPayload)
+            
         const otpbody= await OTP.create(otpPayload);
         
-        console.log("otp body",otpbody);
-        console.log(">")
-        console.log("done>>>>>>>>>")
+       
         return  res.status(200).json({
          success:true,
          message:"otp created successfully",
@@ -167,7 +165,7 @@ exports.signUp=async (req,res)=>{
 exports.login=async(req,res)=>{
     try{
         //email and password fetch
-        console.log("req body",req.body);
+       
         const {email,password}=req.body;
        
         //validation
@@ -197,6 +195,7 @@ exports.login=async(req,res)=>{
             let token=jwt.sign(payload,process.env.JWT_SECRET,{
                 expiresIn:"24h",
             });
+
             user.token=token;
             user.password=undefined;
             const option={
@@ -227,7 +226,7 @@ exports.login=async(req,res)=>{
 }
 
 exports.changePassword=async(req,res)=>{
-    console.log("change password")
+   
     try{
           //fetch data
           const userDetail=await User.findById(req.user.id);
@@ -252,15 +251,6 @@ exports.changePassword=async(req,res)=>{
 		}
         
 
-        // Match new password and confirm new password
-		// if (newPassword !== confirmPassword) {
-		// 	// If new password and confirm new password do not match, return a 400 (Bad Request) error
-		// 	return res.status(400).json({
-		// 		success: false,
-		// 		message: "The password and confirm password does not match",
-		// 	});
-		// }
-       
 
         	// Update password
 		const encryptedPassword = await bcrypt.hash(newPassword, 10);

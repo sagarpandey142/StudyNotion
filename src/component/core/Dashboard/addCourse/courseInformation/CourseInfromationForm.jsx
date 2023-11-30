@@ -33,7 +33,7 @@ const CourseInfromationForm = () => {
      const getCategories=async()=>{
         const toastID=toast.loading("Loading....")
         const categories=await fetchcourseCategories();
-        console.log("first",categories);
+        
         if(categories.length>0){
           setCourseCategory(categories);
         }
@@ -137,6 +137,7 @@ const CourseInfromationForm = () => {
         const formData=new FormData();
         let c=2;
         
+        
         formData.append("courseName",data.courseTitle)
         formData.append("courseDescription",data.courseshortdesc)
         formData.append("price",data.coursePrice)
@@ -148,7 +149,7 @@ const CourseInfromationForm = () => {
         formData.append("thumbnailImage", data.courseImage)
 
         setloading(true);
-        console.log("formdata 2 is",formData);
+       
         const result=await addCourseDetails(formData,token);
 
         if(result){
@@ -156,8 +157,7 @@ const CourseInfromationForm = () => {
           dispatch(setCourse(result));
         }
         setloading(false);
-        console.log("PRINTING FORMDATA", formData);
-        console.log("PRINTING result", result);
+        
   }
  
 

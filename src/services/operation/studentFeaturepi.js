@@ -38,7 +38,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
                Authorisation:`Bearer ${token}`
            })
            //validation
-           console.log("orderresponse",orderResponse);
+          
            if(!orderResponse.data.success){
                throw new Error(orderResponse.data.message);
            }
@@ -60,6 +60,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
                     //sent succesfull payment email
                     sendPaymentSuccessEmail(response,orderResponse.data.message.amount,token)
                     //verify payment
+                    console.log("payment",{...response,courses})
                     verifyPayment({...response,courses},token,navigate,dispatch);
                }
            

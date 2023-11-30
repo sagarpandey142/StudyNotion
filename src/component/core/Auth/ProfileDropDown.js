@@ -8,10 +8,10 @@ import useOnClickOutside from "../../../hooks/useonclickOutside"
 import {VscDashboard,VscSignOut} from "react-icons/vsc"
   
 export default function ProfileDropdown(){
+  
 const dispatch=useDispatch();
 const navigate=useNavigate();
 const {user}=useSelector((state)=>state.profile)
-console.log("user is",user);
 const[open,setopen]=useState(false);
 const ref=useRef(null);
 
