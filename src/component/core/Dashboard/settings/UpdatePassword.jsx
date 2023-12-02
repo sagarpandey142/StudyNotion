@@ -36,7 +36,7 @@ export default function UpdatePassword(){
                         id='currentPassword'
                         type='password'
                         name='currentPassword'
-                        placeholder='Enter Cyrrent Password'
+                        placeholder='Enter Current Password'
                         className='form-style'
                         {...register("currentPassword",{
                             required:true

@@ -30,7 +30,7 @@ exports.resetPasswordLink=async(req,res)=>{
         )
 
         //link generation
-        const url=`http:localhost:3000/update-password/${token}`;
+        const url=`https://mega-project-opal.vercel.app/update-password/${token}`;
      
         await mailSender(email,
                  "Password Reset Link",
@@ -77,7 +77,7 @@ exports.resetPassword=async(req,res)=>{
         if(!(dbCheck.resetPasswordExpires  >Date.now())){
             res.status(403).json({
                 sucess:false,
-                message:"Token expirse Please try again "
+                message:"Token expires Please try again "
             })
         }
         //hashing password
@@ -92,7 +92,7 @@ exports.resetPassword=async(req,res)=>{
             {new:true},
         )
        
-        res.status(200).json({
+       return res.status(200).json({
             success:true,
             message:"Password Change SuccessFully",
            

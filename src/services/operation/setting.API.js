@@ -8,7 +8,7 @@ import { logout } from "./authApi";
 
 
 export async function UpdatePasswordCo(token,data){
-  console.log("commed")
+ 
     const toastID=toast.loading("Loading......")
     try{
         const response=await apiConnector("POST",settings.CHANGE_PASSWORD_API,data,{

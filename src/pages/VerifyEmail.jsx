@@ -18,7 +18,7 @@ const VerifyEmail = () => {
   const navigate=useNavigate();
 
   async function otpsend(email){
-      dispatch(setLoading(true));
+      const toastId=toast.loading('Loading');
       try{
         const response=await axios.post(endpoints.SENDOTP_API,{email});
        
@@ -28,7 +28,7 @@ const VerifyEmail = () => {
           console.log("error in sending otp",error.message);
           toast.error("Otp not sent");
       }
-      dispatch(setLoading(false));
+      toast.dismiss(toastId);
   }
 
   useEffect(()=>{
@@ -132,9 +132,9 @@ const VerifyEmail = () => {
                   <p  className="text-richblack-5 flex items-center gap-x-2"> <BiArrowBack />   Back to login</p>
                </Link>
 
-               <button onClick={handleotp} className='flex'>
+               <button onClick={handleotp} className='flex gap-2 items-center '>
                <RxCountdownTimer />
-                   Resend it
+                   <p>Resend it</p>
                </button>
           </div>
        </div>
