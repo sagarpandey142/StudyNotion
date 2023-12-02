@@ -1,23 +1,27 @@
 import React from 'react'
 import { deleteProfile } from '../../../../services/operation/profileApi'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {FiTrash2} from "react-icons/fi"
+import { logout } from '../../../../services/operation/authApi';
 export default function DeleteAccount (){
  
     const navigate=useNavigate();
+    const dispatch=useDispatch();
     const{token}=useSelector((state)=>state.auth)
 
     const  handleDelete=()=>{
           try{
-              deleteProfile(token,Navigate)
+              deleteProfile(token);
+              dispatch(logout(navigate));
+              navigate("/");
           } catch(error){
             console.log("error is handle delete",error);
           }
     }
   return (
     <>
-    <div  className="my-10 flex flex-row gap-x-5 rounded-md border-[1px] border-pink-700 bg-pink-900 p-8 px-12">
+    <div  className="my-10 flex flex-row gap-x-5 rounded-md border-[1px] border-pink-700 bg-pink-900 p-8 px-12 mb-4">
         <div className="flex aspect-square h-14 w-14 items-center justify-center rounded-full bg-pink-700">
              <FiTrash2 className="text-3xl text-pink-200"/>
              </div>

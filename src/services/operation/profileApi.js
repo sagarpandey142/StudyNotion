@@ -1,5 +1,5 @@
 import {toast} from "react-hot-toast"
-import { endpoints, profileEndpoints } from "../api";
+import { endpoints, profileEndpoints, settings } from "../api";
 import axios from "axios";
 import { apiConnector } from "../apiconnector";
 
@@ -36,6 +36,19 @@ export async function getAllEnrolledCourses(token){
 
 
 
-export function deleteProfile(userid){
-     
+export async function deleteProfile(token){
+     const toastId=toast.loading("Loading");
+     try{
+
+         //make a call to backend
+           const response=await apiConnector("DELETE",settings.DELETE_PROFILE_API,{       
+              Authorisation: `Bearer ${token}`,
+           })
+        
+           toast.success("Account Deleted")
+     } catch(error){
+        toast.error("Some Error Occured Please Try Again In A Minute");
+        console.log("error",error.message);
+     }
+     toast.dismiss(toastId);
 }

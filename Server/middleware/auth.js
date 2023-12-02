@@ -6,7 +6,6 @@ exports.Auth=async(req,res,next)=>{
   
     try{
         //extract
-       
         const token=req.cookies.token 
                      || req.body.token 
                      || req.header("Authorisation").replace("Bearer ", "");
@@ -23,7 +22,7 @@ exports.Auth=async(req,res,next)=>{
         const decode=jwt.verify(token,process.env.JWT_SECRET );
         console.log(decode);
         req.user=decode
-        
+       
         } catch(err){
             console.log(err);
             res.status(401).json({

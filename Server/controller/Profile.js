@@ -55,21 +55,24 @@ exports.deleteAccount=async(req,res)=>{
                 message:"All Field Are Required",
             })
           }
+       
           //delete profile
           await Profile.findByIdAndDelete({_id:user.additionalDetail});
           //delete from enrolled course TODO
           await User.findByIdAndDelete({_id:userid});
+          
           //response
-          res.status(200).json({
+          console.log("done")
+        return  res.status(200).json({
             sucess:true,
             message:"Profile Deleted SuccessFully",
           })
 
     } catch(error){
-        res.status(500).json({
+       return res.status(500).json({
             success:false,
             message:"error while Deleting Profile",
-          error,
+            error,
          })
     }
 }

@@ -20,7 +20,7 @@ export const settings={
     CHANGE_PASSWORD_API:BASE_URL+"/auth/changepassword",
     UPDATE_DISPLAY_PICTURE_API:BASE_URL+"/profile/updateDisplayPicture",
     UPDATE_PROFILE_API:BASE_URL+"/profile/updateprofile",
-    DELETE_PROFILE_API:BASE_URL+"/profile/deleteSection",
+    DELETE_PROFILE_API:BASE_URL+"/profile/deleteProfile",
     
 
 }
@@ -30,7 +30,7 @@ export const contactusEndpoint={
 
 export const profileEndpoints={
     GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getAllEnrolledCourses",
-  
+     
 }
 
 export const ratingAndReview={
