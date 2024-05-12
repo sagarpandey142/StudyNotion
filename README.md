@@ -1,4 +1,3 @@
-Certainly! Here's a sample README.md file for your StudyNotion project:
 
 ```markdown
 # StudyNotion
@@ -54,4 +53,3 @@ Contributions to StudyNotion are welcome! If you'd like to contribute, please fo
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
-You can customize this README.md file by replacing placeholders with your actual project details, such as the repository URL, MongoDB URI, JWT secret, and deployment instructions specific to your hosting platform. Feel free to add more sections or details as needed.
