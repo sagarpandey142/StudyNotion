@@ -25,7 +25,7 @@ export async function UpdatePasswordCo(token,data){
             toast.success("Password Updated SuccessFully");         
     } catch(error){
         console.log("CHANGE_PASSWORD_API API ERROR............", error)
-        toast.error("Error in Updating Password")
+        toast.error(" Password Dosen't Match")
     }
     toast.dismiss(toastID);
 }
