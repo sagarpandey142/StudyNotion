@@ -3,6 +3,7 @@ const Profile=require("../model/profile");
 const { imageUploadToCloudinary } = require("../utils/imageUpload");
 const {convertSecondsToDuration}=require("../utils/sectoDuration")
 const CourseProgress=require("../model/courseprogress")
+const courses = require("../model/courses");
 
 exports.updateProfile=async(req,res)=>{
     try{
@@ -60,6 +61,8 @@ exports.deleteAccount=async(req,res)=>{
           await Profile.findByIdAndDelete({_id:user.additionalDetail});
           //delete from enrolled course TODO
           await User.findByIdAndDelete({_id:userid});
+         // delete courses made by user
+        await courses.findByIdAndDelete({instructor:userId})
           
           //response
           console.log("done")
