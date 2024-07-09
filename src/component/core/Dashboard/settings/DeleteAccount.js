@@ -31,6 +31,7 @@ export default function DeleteAccount (){
                          
                  <p>Would you like to delete account ?</p>
                   <p>This account may contain Paid Courses. Deleting your account is permanent and will remove all the contain associated with it.</p>
+                  <p className=' mt-3'>"Once Deleted Can't Be Recovered"</p>
                  </div>
         
                  <button
