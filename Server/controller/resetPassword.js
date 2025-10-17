@@ -30,7 +30,7 @@ exports.resetPasswordLink=async(req,res)=>{
         )
 
         //link generation
-        const url=`https://mega-project-opal.vercel.app/update-password/${token}`;
+        const url=`https://study-notion-ruddy-xi.vercel.app/update-password/${token}`;
      
         await mailSender(email,
                  "Password Reset Link",

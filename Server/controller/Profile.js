@@ -11,8 +11,6 @@ exports.updateProfile=async(req,res)=>{
        const {contactNumber,dateOfBirth="",about="",gender=""}=req.body;
        //fetch id from params
        const userid=req.user.id;
-       //validation
-      
        //update profile
        const userInfo=await User.findById(userid).populate("additionalDetail");
       
@@ -43,25 +41,32 @@ exports.updateProfile=async(req,res)=>{
 }
 
 //delete profile
-exports.deleteAccount = async (req, res) => {
-  try {
-      // Data fetch
-      const userId = req.user.id;
-      // Validation
-      const user = await User.findById(userId);
-      if (!user) {
-          return res.status(401).json({
-              success: false,
-              message: "User not found",
-          });
-      }
-     
-            // Delete profile
-            await Profile.findByIdAndDelete(user.additionalDetail);
-            // Delete user
-            await User.findByIdAndDelete(userId);
-            // delete courses made by user
-            await courses.findByIdAndDelete({instructor:userId})
+exports.deleteAccount=async(req,res)=>{
+    try{
+          //data fetch
+          const userid=req.user.id;
+          //validation
+          const user=await User.findById({_id:userid})
+          if(!user){
+            res.status(401).json({
+                success:false,
+                message:"All Field Are Required",
+            })
+          }
+       
+          //delete profile
+          await Profile.findByIdAndDelete({_id:user.additionalDetail});
+          //delete from enrolled course TODO
+          await User.findByIdAndDelete({_id:userid});
+         // delete courses made by user
+        await courses.findByIdAndDelete({instructor:userId})
+          
+          //response
+          console.log("done")
+        return  res.status(200).json({
+            sucess:true,
+            message:"Profile Deleted SuccessFully",
+          })
 
 
     // Respond to the client

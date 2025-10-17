@@ -88,7 +88,7 @@ const ReviewSidebarModal = ({setreviewModal}) => {
                                                       name='userExperience'
                                                       placeholder='Add Your Experience'
                                                       {...register("userExperience",{required:true})}
-                                                      className="form-style resize-x-none min-h-[130px] w-full"
+                                                      className="form-style resize-x-none min-h-[130px] w-full "
                                                    />
                                                    {
                                                       errors.userExperience && (

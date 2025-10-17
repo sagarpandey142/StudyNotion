@@ -14,13 +14,14 @@ const Contactus = () => {
         reset,
         formState: {errors,isSubmitSuccessful}
     }=useForm();
-
+    
 
    const submitContactForm=async(data)=>{
       const toastId=toast.loading("Sending The Message To The Team")
          try{
             setloading(true);
             const res=await apiConnector("POST",contactusEndpoint.CONTACT_US_API,{data})
+            const sendingMessageToHead=await apiConnector("POST",contactusEndpoint.CONTACT_US_API,{})
             console.log("res",res);
             if(res){
                 toast.dismiss(toastId);
