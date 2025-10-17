@@ -16,21 +16,21 @@ const Home = () => {
   const navigate=useNavigate()
    const token=localStorage.getItem("token");
   
-  async function handleTokenExpired(params) {
-    if(token==null) return;
-     let flag=  await checkJwtExpired(token);
-    if(flag){
-       console.log("Jwt Validated")
+  // async function handleTokenExpired(params) {
+  //   if(token==null) return;
+  //    let flag=  await checkJwtExpired(token);
+  //   if(flag){
+  //      console.log("Jwt Validated")
        
-    } else{
-      localStorage.removeItem("token")
-      navigate("/login")
-    }
-  }
+  //   } else{
+  //     localStorage.removeItem("token")
+  //     navigate("/login")
+  //   }
+  // }
 
-  useEffect(()=>{
-    handleTokenExpired()
-  },[])
+  // useEffect(()=>{
+  //   handleTokenExpired()
+  // },[])
 
   return (
     <div>

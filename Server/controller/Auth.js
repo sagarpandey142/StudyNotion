@@ -193,7 +193,7 @@ exports.login=async(req,res)=>{
             }
 
             let token=jwt.sign(payload,process.env.JWT_SECRET,{
-                expiresIn:"24h",
+                expiresIn:"48h",
             });
 
             user.token=token;
