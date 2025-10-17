@@ -30,40 +30,10 @@ const LogInForm = () => {
           ))  
     }
     const {email,password}=formData;
-        
-      async function log(){
-      const toastID=toast.loading("loading.....")
-   //   dispatch(setLoading(true));
-      try{
-        const data = await axios.post(endpoints.LOGIN_API ,formData);
-         
-        if(!data.data.success){
-          throw new Error(data.message);
-        }
-        toast.success("Log In  SuccessFull");
-        dispatch(setToken(data.data.token))
-         const userImage = data.data?.user?.images
-          ? data.data.user.images
-         : `https://api.dicebear.com/5.x/initials/svg?seed=${data.data.user.firstName} ${data.data.user.lastName}`
-
-   
-         dispatch(setUser({...data.data.user, image: userImage}))
-         localStorage.setItem("token", JSON.stringify(data.data.token))
-         localStorage.setItem("user", JSON.stringify(data.data.user))
-        navigate("/dashboard/my-profile");
-      } catch(error){
-        toast.error("Log In Failed")
-        console.log(error);
-      }
-      toast.dismiss(toastID);
-      dispatch(setLoading(false));
-    }
-
-
+  
 
     const submithandler=(event)=>{
       event.preventDefault();
-      log();
       dispatch(login(email,password,navigate))
     }
   return (

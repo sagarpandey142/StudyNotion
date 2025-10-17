@@ -31,7 +31,7 @@ import InstructorDshboard from "./component/core/Dashboard/InstructorDashboard/I
 function App() {
   const {user}=useSelector((state)=>state.profile)
   return (
-    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter overflow-y-hidden overscroll-y-none">
+    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter  ">
        
            <Navbar/>
        <Routes>

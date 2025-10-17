@@ -33,7 +33,7 @@ exports.createRating=async(req,res)=>{
                 message:"Course is Already Reviewed By The User "
             })
         }
-    console.log("first")
+    
         const createRaReview=await RatingAndReview.create({
             rating,
             review,

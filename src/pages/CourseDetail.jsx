@@ -44,6 +44,7 @@ const CourseDetail = () => {
         const fetchCourseDetail=async()=>{
              try{
                 const response=await fetchCourse({courseId});
+                console.log("response of fetch course details",response)
                 if(response){
                     setCourse(response);
                 }
@@ -54,11 +55,18 @@ const CourseDetail = () => {
 
         fetchCourseDetail();
     },[courseId])
+
+  
      
-    const handleBuyCourse=async()=>{
+    const handleBuyCourse=async(course)=>{
         if(user?.accountType === ACCOUNT_TYPE.INSTRUCTOR){
             toast.error("You Are Instructor You Cant Buy A Course")
             return;
+        }
+
+      if (course?.studentEnrolled?.includes(user?._id)) {
+        navigate("/dashboard/enrolled-courses");
+        return ;
         }
 
          if(token){
@@ -232,14 +240,18 @@ const CourseDetail = () => {
                 
                 {/*button*/}
                 <div className='flex-col '>
-                    <button onClick={()=>handleBuyCourse()} className='bg-yellow-200 w-[24rem] py-3 rounded-lg text-black'>
-                    {course?.studentEnrolled?.user ? "Go to Course" : "Buy Course"
-                    }
+                    <button onClick={()=>handleBuyCourse(course)} className='bg-yellow-200 w-[24rem] py-3 rounded-lg text-black'>
+                   {course?.studentEnrolled?.includes(user._id)
+                        ? "Go to Course"
+                        : "Buy Course"}
+
                     </button>
                     <br></br>
-                    <button onClick={handleAddToCart} className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
+                  {
+                      course?.studentEnrolled?.includes(user._id) ??   <button onClick={handleAddToCart} className='bg-richblack-800 w-[24rem] py-3 rounded-lg mt-4 '>
                                 Add To Cart
                     </button>
+                  }
                 </div>
 
                 <p className="pb-3 pt-6 text-center text-sm text-richblack-25">30-Day Money-Back Guarantee</p>

@@ -6,6 +6,7 @@ const {
     signUp,
     changePassword,
     otpGenerate,
+    checkJwtExpired,
 }=require("../controller/Auth");
 const{resetPasswordLink,resetPassword}=require("../controller/resetPassword");
 
@@ -22,6 +23,7 @@ router.post("/login",login);
 router.post("/signup",signUp);
 router.post("/sendotp",otpGenerate);
 router.post("/changepassword",Auth,changePassword);
+router.post("/checkJwtExpired",checkJwtExpired)
 
 
 // ********************************************************************************************************

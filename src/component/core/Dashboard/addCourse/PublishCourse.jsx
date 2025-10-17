@@ -48,7 +48,7 @@ const PublishCourse = () => {
              : COURSE_STATUS.DRAFT
 
              formData.append("status",course_status);
-           
+             console.log("formdata on final",formData)
              const result=await editCourseDetails(formData,token)
 
              if(result){

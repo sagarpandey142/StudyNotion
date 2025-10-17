@@ -58,7 +58,7 @@ exports.categoryPageDetail=async(req,res)=>{
     try{
          //fetch category id from request
          const{categoryid}=req.body;
-        
+       
           const specifiedCategory=await Category.findById(categoryid)
          
           .populate({
@@ -67,7 +67,7 @@ exports.categoryPageDetail=async(req,res)=>{
             populate: "ratingAndReview",
           })
           .exec()
-          console.log("first",specifiedCategory);
+        
           if(!specifiedCategory){
             return res.status(404).json({
                 success:false,
@@ -109,20 +109,25 @@ exports.categoryPageDetail=async(req,res)=>{
                path: "instructor",
            },
            })
+           .lean()
            .exec()
            
          const allCourses = allCategories.flatMap((category) => category.course)
-         const mostSellingCourses = allCourses
-           .sort((a, b) => b.sold - a.sold)
-           .slice(0, 10)
+         console.log("allCategories", allCategories);
+          console.log("allCourses", allCourses);
+
+        const mostSellingCourses = allCourses
+        .sort((a, b) => (b.studentEnrolled?.length || 0) - (a.studentEnrolled?.length || 0))
+        .slice(0, 4); 
           
-        
+         console.log("mostselling",mostSellingCourses)
            return res.status(200).json({
               success:true,
               data:{
+                mostSellingCourses: mostSellingCourses ,
                 specifiedCategory,
                 differentCategory,
-                mostSellingCourses,
+        
               }
            })
           

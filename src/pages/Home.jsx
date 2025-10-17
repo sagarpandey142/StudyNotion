@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsArrowRightShort } from 'react-icons/bs';
 import HighlightText from "../../src/component/core/HomePage/HighlightText";
 import BTN from "../../src/component/core/HomePage/BTN";
 import banner from "../assets/Images/banner.mp4"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import CodeBlock from '../../src/component/core/HomePage/CodeBlock';
 import TimeLineLanguage from '../../src/component/core/HomePage/TimeLineLanguage';
 import LearningLanguageSection from '../../src/component/core/HomePage/LearningLanguageSection';
@@ -11,7 +11,27 @@ import InstructorSection from '../../src/component/core/HomePage/InstructorSecti
 import ExploreMore from '../../src/component/core/HomePage/ExploreMore';
 import RatingandReview from '../component/core/HomePage/RatingandReview';
 import Footer from '../component/common/Footer';
+import { checkJwtExpired } from '../services/operation/authApi';
 const Home = () => {
+  const navigate=useNavigate()
+   const token=localStorage.getItem("token");
+  
+  async function handleTokenExpired(params) {
+    if(token==null) return;
+     let flag=  await checkJwtExpired(token);
+    if(flag){
+       console.log("Jwt Validated")
+       
+    } else{
+      localStorage.removeItem("token")
+      navigate("/login")
+    }
+  }
+
+  useEffect(()=>{
+    handleTokenExpired()
+  },[])
+
   return (
     <div>
     {/*section 1*/}
@@ -42,7 +62,7 @@ const Home = () => {
           <BTN linkto={"/login"} active={false}>Book a Demo</BTN>
           </div>
 
-          <div className="mx-3 my-7 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
+          <div className="mx-3 my-7 shadow-[10px_-3px_50px_-5px] shadow-blue-200">
             
               <video className="shadow-drop w-[1035px] h-[515px] " autoPlay loop muted controls>
                 <source src={banner} type='video/mp4'></source>
@@ -84,8 +104,8 @@ const Home = () => {
                     }
                   }
 
-                  codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n/body>\n/h1><ahref="/">Header</a>\n//h1>\n/nav><ahref="one/">One</a><ahref="two/">Two</\n/a><ahref="three/">Three</a>\n//nav>`}
-                  blockcolor="text-yellow-25"
+                  codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><link rel="stylesheet"href="styles.css">\n/head>\n/body>\n/h1><ahref="/">Header</a>\n//h1>\n/nav><ahref="one/">One</a><ahref="two/">Two</\n/a><ahref="three/">Three</a>\n//nav>`}
+                  blockcolor="text-yellow-25, text-pink-300, text-pink-200"
                  />
                 
                 </div>

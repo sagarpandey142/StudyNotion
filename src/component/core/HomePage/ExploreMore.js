@@ -36,15 +36,15 @@ const ExploreMore = () => {
            Learn to Build Anything You Can Imagine
            </div>
 
-           <div className="flex flex-row mt-5 bg-richblack-800 rounded-full mb-5 border-richblack-100  py-1 px-1">
+           <div className="flex flex-row mt-5 bg-richblack-800 rounded-full mb-5 border-richblack-100  py-1 px-3">
             {
                 tabName?.map((Element,index)=>{
                     return(
                          <div className={`text-[16px] flex justify-between  gap-2 
                          ${currentTab===Element ?
-                         " bg-richblack-900 text-richblack-5 font-medium" :
-                          "text-richblack-200"}rounded-full transition-all duration-200 cursor-pointer
-                hover:bg-richblack-900 hover:text-richblack-5 px-2 py-1`}
+                         " bg-richblack-900 text-richblack-5 font-medium px-1 " :
+                          "text-richblack-200"} transition-all duration-200 cursor-pointer
+                hover:bg-richblack-900 hover:text-richblack-5 px-2 py-1 rounded-xl`}
                 key={index}
                  onClick={()=>setmyCard(Element)} >
                             {Element}

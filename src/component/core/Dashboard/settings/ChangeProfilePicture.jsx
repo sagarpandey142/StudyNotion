@@ -40,6 +40,7 @@ const ChangeProfilePicture = () => {
   }
 
   const handleFileUpload=()=>{
+   console.log("handle file upload")
      try{
         setLoading(true);
         const formData=new FormData();
@@ -84,10 +85,10 @@ const ChangeProfilePicture = () => {
                          </button>
                    
                         <button
-                            onClick={handleFileUpload}
-                            className='cursor-pointer rounded-md bg-yellow-50 py-2 px-5 font-semibold text-black flex flex-row items-center '
+                           onClick={ImageFile != null ? handleFileUpload : null}
+                            className={`cursor-pointer rounded-md ${ImageFile!=null ? 'bg-yellow-50' : 'text-richblack-50 bg-richblack-700' } py-2 px-5 font-semibold text-black flex flex-row items-center`} 
                          >
-                         {loading ? "Uploading...." : "Upload"}
+                         {loading ? "Uploading...." : ImageFile==null ? "Please Select The File First" : "Upload"}
                          <BiUpload className="text-lg text-richblack-900 ml-2"/>
                          </button>
                        

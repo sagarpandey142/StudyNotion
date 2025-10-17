@@ -2,7 +2,8 @@ const User=require("../model/User");
 const Profile=require("../model/profile");
 const { imageUploadToCloudinary } = require("../utils/imageUpload");
 const {convertSecondsToDuration}=require("../utils/sectoDuration")
-const CourseProgress=require("../model/courseprogress")
+const CourseProgress=require("../model/courseprogress");
+const courses = require("../model/courses");
 
 exports.updateProfile=async(req,res)=>{
     try{
@@ -42,40 +43,42 @@ exports.updateProfile=async(req,res)=>{
 }
 
 //delete profile
-//Explore -> how can we schedule this deletion operation(done)
-exports.deleteAccount=async(req,res)=>{
-    try{
-          //data fetch
-          const userid=req.user.id;
-          //validation
-          const user=await User.findById({_id:userid})
-          if(!user){
-            res.status(401).json({
-                success:false,
-                message:"All Field Are Required",
-            })
-          }
-       
-          //delete profile
-          await Profile.findByIdAndDelete({_id:user.additionalDetail});
-          //delete from enrolled course TODO
-          await User.findByIdAndDelete({_id:userid});
-          
-          //response
-          console.log("done")
-        return  res.status(200).json({
-            sucess:true,
-            message:"Profile Deleted SuccessFully",
-          })
+exports.deleteAccount = async (req, res) => {
+  try {
+      // Data fetch
+      const userId = req.user.id;
+      // Validation
+      const user = await User.findById(userId);
+      if (!user) {
+          return res.status(401).json({
+              success: false,
+              message: "User not found",
+          });
+      }
+     
+            // Delete profile
+            await Profile.findByIdAndDelete(user.additionalDetail);
+            // Delete user
+            await User.findByIdAndDelete(userId);
+            // delete courses made by user
+            await courses.findByIdAndDelete({instructor:userId})
 
-    } catch(error){
-       return res.status(500).json({
-            success:false,
-            message:"error while Deleting Profile",
-            error,
-         })
-    }
-}
+
+    // Respond to the client
+    return res.status(200).json({
+        success: true,
+        message: "Account deletion scheduled in 30 days",
+    });
+  
+  } catch (error) {
+    console.log("error",error)
+      return res.status(500).json({
+          success: false,
+          message: "Error while scheduling account deletion",
+          error,
+      });
+  }
+};
 
 //get all user
 exports.GetallProfile=async(req,res)=>{

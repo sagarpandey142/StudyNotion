@@ -30,7 +30,7 @@ const Template = ({title,desc1,desc2,image,formtype}) => {
            
          
              loading='lazy'
-            className='relative w-11/12 max-w-[450px] mt-1 -right-[20%] h-[494px] w-[558px]'
+            className='relative max-w-[450px] mt-1 -right-[20%] h-[494px] w-[558px]'
             />
           
           <img

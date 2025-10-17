@@ -296,3 +296,46 @@ exports.changePassword=async(req,res)=>{
    
 }
 
+exports.checkJwtExpired = async (req, res) => {
+  try {
+    let { token } = req.body; 
+    console.log("[server] raw token:", token);
+
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: "Token is required",
+      });
+    }
+
+    if (token.startsWith('"') && token.endsWith('"')) {
+      token = token.slice(1, -1); // ✅ now this works
+    }
+
+    console.log("[server] cleaned token:", token);
+
+    // Verify the token
+    const decode = jwt.verify(token, process.env.JWT_SECRET);
+   
+
+    return res.status(200).json({
+      success: false,
+      message: "Token is valid",
+    });
+
+  } catch (error) {
+    console.error("[server] JWT Error:", error.name);
+
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({
+        success: false,
+        message: "JWT token has expired",
+      });
+    }
+
+    return res.status(401).json({
+      success: false,
+      message: "JWT token is invalid",
+    });
+  }
+};

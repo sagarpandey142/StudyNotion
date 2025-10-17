@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { getAllEnrolledCourses } from '../../../services/operation/profileApi';
 import axios from 'axios';
@@ -10,8 +10,10 @@ const EnrolledCourse = () => {
     const[enrolledcourse,setEnrolledCoure]=useState();
     const[totalSec,setTotalSec]=useState(0);
     const navigate=useNavigate();
+    const hasFetched = useRef(false);
 
     const getEnrolledcourse=async()=>{
+
          try{
           const response=await getAllEnrolledCourses(token);
           
@@ -21,9 +23,12 @@ const EnrolledCourse = () => {
          }
     }
 
-   useEffect(()=>{
-       getEnrolledcourse();
-   },[])
+   useEffect(() => {
+  if (!hasFetched.current) {
+    getEnrolledcourse();
+    hasFetched.current = true;
+  }
+}, []);
  
 
 

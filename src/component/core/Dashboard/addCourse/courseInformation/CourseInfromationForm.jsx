@@ -75,12 +75,12 @@ const CourseInfromationForm = () => {
   }
   //handles next button click
   const onSubmit=async(data)=>{
-      
+  
         if(editCourse){
               
           if(isFormUpdated()){
             const currentvalues=getValues();
-            console.log("current values",currentvalues);
+           
             const formData=new FormData();
   
             formData.append("courseId",course._id);
@@ -116,6 +116,7 @@ const CourseInfromationForm = () => {
             if(currentvalues.courseRequirments.toString()!==course.instructions.toString()){
               formData.append("instructions",JSON.stringify(data.courseRequirments))
             }
+          
             setloading(true);
             const result=await editCourseDetails(formData,token);
             setloading(false);
@@ -127,29 +128,31 @@ const CourseInfromationForm = () => {
           else{
               toast.error("No change Made So Far")
           }
-          console.log("PRINTING FORMDATA", formData);
-          console.log("PRINTING result", result);
+        
+       
 
           return;
         }
         //new form create
-        
+     
         const formData=new FormData();
-        let c=2;
-        
+       
         
         formData.append("courseName",data.courseTitle)
         formData.append("courseDescription",data.courseshortdesc)
         formData.append("price",data.coursePrice)
         formData.append("whatYouWillLearn",data.courseBenefits)
         formData.append("category",data.courseCategory)
-        formData.append("instructions",JSON.stringify(data?.courseRequirements))
+        formData.append("instructions",JSON.stringify(data?.courseRequirments))
         formData.append("tag",JSON.stringify(data.courseTags))
         formData.append("status",COURSE_STATUS.DRAFT)  
         formData.append("thumbnailImage", data.courseImage)
-
+        
         setloading(true);
-       
+            for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
         const result=await addCourseDetails(formData,token);
 
         if(result){

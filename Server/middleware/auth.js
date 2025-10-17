@@ -9,7 +9,7 @@ exports.Auth=async(req,res,next)=>{
         const token=req.cookies.token 
                      || req.body.token 
                      || req.header("Authorisation").replace("Bearer ", "");
-                 
+           
         if(!token){
             res.status(401).json({
                 sucess:false,
@@ -20,12 +20,12 @@ exports.Auth=async(req,res,next)=>{
         try{
 
         const decode=jwt.verify(token,process.env.JWT_SECRET );
-        console.log(decode);
+       console.log("decoded",decode,token)
         req.user=decode
        
         } catch(err){
             console.log(err);
-            res.status(401).json({
+           return res.status(401).json({
                 sucess:false,
                 message:"Token is invalid",
             })
@@ -91,3 +91,7 @@ exports.isInstructor=async(req,res,next)=>{
         })
     }
 }
+
+
+
+

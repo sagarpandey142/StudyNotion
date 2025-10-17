@@ -163,3 +163,22 @@ export function getpasswordresetToken(email,setSentEmail){
 
 }
 
+export async function checkJwtExpired(token) {
+
+  try {
+    const response = await apiConnector("POST", endpoints.checkJwtExpire_API, { token });
+
+    console.log("response", response);
+
+    if (!response.data.success) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.log("error", error.message);
+    return false;
+  }
+}
+
+

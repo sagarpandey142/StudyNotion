@@ -37,7 +37,7 @@ const Catalog = () => {
               try{
           
                      const response=await getCatalogPageData(categoryid);
-                     console.log("res",response)
+                     console.log("catalogPageData",response)
                      setCatalogPageData(response);
               } catch(error){
                   console.log("error",error)
@@ -51,13 +51,13 @@ const Catalog = () => {
        }
 
     }, [categoryid])
-    console.log("cataglor data",catalogPageData.data);
+    console.log("catalogPageData",catalogPageData.data);
 
     if(!catalogPageData.success){
          return <Error/>
     }
   return (
-    <div className=" box-content bg-richblack-800 px-4">
+    <div className=" box-content bg-richblack-800 ">
         <div  className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
             <p className="text-sm text-richblack-300">{`Home/Catalog/`}</p>
             <span className='text-yellow-25'>

@@ -46,6 +46,7 @@ export async function  getAllCourses(){
   }
 
   export async function addCourseDetails(data,token){
+    console.log("data",data)
          let result=null
          const toastId=toast.loading("Loading....")
          try{
@@ -68,6 +69,7 @@ export async function  getAllCourses(){
   }
 
   export async function editCourseDetails(data,token){
+    console.log("api data",data)
        let result=null
         const toastId=toast.loading("Loading....")
         try{

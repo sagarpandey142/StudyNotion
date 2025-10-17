@@ -14,7 +14,7 @@ const Forgotpassword = () => {
     const[email,setemail]=useState("");
     const loading=useSelector((state)=>state.auth)
     const dispatch=useDispatch();
-
+   
            
 
       async function resetPassword(){
@@ -100,7 +100,7 @@ const Forgotpassword = () => {
                        
 
                      <div className='mt-6 flex items-center justify-between'>
-                     <Link to="/login">
+                     <Link to="/signup">
                         <p className='flex items-center gap-x-2 text-richblack-5'>
                         <AiOutlineArrowLeft/>
                             Back to Login

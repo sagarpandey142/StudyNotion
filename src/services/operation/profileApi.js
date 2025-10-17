@@ -48,7 +48,7 @@ export async function deleteProfile(token){
            toast.success("Account Deleted")
      } catch(error){
         toast.error("Some Error Occured Please Try Again In A Minute");
-        console.log("error",error.message);
+        console.log("error",error);
      }
      toast.dismiss(toastId);
 }

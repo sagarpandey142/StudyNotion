@@ -13,7 +13,7 @@ exports.createCourse=async(req,res)=>{
    try{
      //data fetch
      let{courseName, courseDescription, whatYouWillLearn, price,tag, category,status,instructions}=req.body;
-
+      
      const thumbnail=req.files.thumbnailImage;
      
     // console.log(courseName, courseDescription, whatYouWillLearn, price, category,status,instructions);
@@ -56,6 +56,13 @@ exports.createCourse=async(req,res)=>{
  
      //upload to cloudinaryKO
       const thumbnailImage=await imageUploadToCloudinary(thumbnail,process.env.FOLDER_NAME);
+      if (typeof instructions === "string") {
+        try {
+          instructions = JSON.parse(instructions); // converts '["unique"]' -> ["unique"]
+        } catch (err) {
+          instructions = [];
+        }
+      }
     
      const newCourse=await Course.create({
             courseName,
@@ -172,7 +179,7 @@ exports.getAllCourseDetail=async(req,res)=>{
                 message:`Could Not Find The Course With This ${courseId}`
             })
         }
-
+      console.log("fetched course",fetchedCourse)
         res.status(200).json({
             success:true,
             message:"Course Detail Fetched SuccessFully",
@@ -268,7 +275,7 @@ exports.editCourse = async (req, res) => {
     try {
       const { courseId } = req.body
       const updates = req.body
-     
+      console.log("updates",updates)
       const course = await Course.findById(courseId)
   
       if (!course) {

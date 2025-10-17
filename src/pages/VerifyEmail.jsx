@@ -128,7 +128,7 @@ const VerifyEmail = () => {
           </form>
 
           <div className="mt-6 flex items-center justify-between">
-               <Link>
+               <Link to="/login">
                   <p  className="text-richblack-5 flex items-center gap-x-2"> <BiArrowBack />   Back to login</p>
                </Link>
 
