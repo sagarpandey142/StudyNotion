@@ -14,23 +14,9 @@ import Footer from '../component/common/Footer';
 import { checkJwtExpired } from '../services/operation/authApi';
 const Home = () => {
   const navigate=useNavigate()
-   const token=localStorage.getItem("token");
+  const token=localStorage.getItem("token");
   
-  // async function handleTokenExpired(params) {
-  //   if(token==null) return;
-  //    let flag=  await checkJwtExpired(token);
-  //   if(flag){
-  //      console.log("Jwt Validated")
-       
-  //   } else{
-  //     localStorage.removeItem("token")
-  //     navigate("/login")
-  //   }
-  // }
-
-  // useEffect(()=>{
-  //   handleTokenExpired()
-  // },[])
+ 
 
   return (
     <div>
@@ -44,7 +30,6 @@ const Home = () => {
               <p> Become an Instructor</p> 
                <BsArrowRightShort/>
             </div>
-         
           </div>
        </Link>
 

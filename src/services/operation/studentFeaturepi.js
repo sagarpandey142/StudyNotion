@@ -101,6 +101,7 @@ const verifyPayment=async(bodyData,token,navigate,dispatch)=>{
           const res=await apiConnector("POST",paymentss.VERIFY_PAYMENT_API,bodyData,{
                Authorisation:`Bearer ${token}`
           })
+          console.log(" res verifyPayment",res)
           if(!res.data.success)
           {
                throw new Error(res.data.message)
